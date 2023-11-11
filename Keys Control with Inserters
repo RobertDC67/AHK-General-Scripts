@@ -1,0 +1,683 @@
+
+/*
+▎▔▔▔▔▔▔▔▔▔▔▔✎ NOTES ✎▔▔▔▔▔▔▔▔▔▔▔▎ 
+ •───────────────────────────────────────────────• 
+ ∘—————————  Base Notes —————————∘ 
+» Refresh Script —— Ctrl + HOME key rapidly clicked 2 times. (# TapCounts)
+» Exit Script ———— Ctrl + Escape key rapidly clicked 3 times. (# TapCounts)
+
+» Script Updater: Auto-reload script upon saved changes.
+    ▹ If you make any changes to the script file and save it, the script will automatically reload itself and continue running without manual intervention.
+ •───────────────────────────────────────────────• 
+ ∘———————  Script Specific Notes ———————∘ 
+» 
+» 
+ •───────────────────────────────────────────────• 
+ ∘————  Further notes at script end ∙ ∙ ∙  Yes:   No: ✔ 
+ •───────────────────────────────────────────────• 
+▎▁▁▁▁▁▁▁▁▁▁▁ NOTES END ▁▁▁▁▁▁▁▁▁▁▁▎
+*/
+
+;•──────────── Auto-Execute ───────────────────────• 
+Gosub, AutoExecute
+SetTimer, NoSleep, 465000 		 ; No Sleep timer. Runs every 7 3/4 minutes.
+;∘──────────── Auto-Execute End ────────────────────∘ 
+
+
+;•───────────────── THE MENUS ───────────────────•
+GroupAdd All
+
+Menu Case, Add
+Menu Case, Add 
+Menu Case, Color, C7E2FF ; (Blue)
+Menu Case, Add, Change Case, CCase
+Menu Case, Default, Change Case
+Menu Case, Add 
+
+;▫─────────────── Change Text Case ──────────────▫
+Menu ChangeTextCases, Add 
+Menu ChangeTextCases, Add
+Menu ChangeTextCases, Add, UPPERCASE, CCase 
+Menu ChangeTextCases, Add, lowercase, CCase 
+Menu ChangeTextCases, Add
+Menu ChangeTextCases, Add, Sentence case, CCase 
+Menu ChangeTextCases, Add, Title Case, CCase 
+Menu ChangeTextCases, Add
+Menu ChangeTextCases, Add, iNVERT cASE, CCase 
+Menu ChangeTextCases, Add 
+Menu ChangeTextCases, Add
+;▫────────────────── Date & Time ─────────────────▫
+Menu, InsertDateTime, Add
+Menu, InsertDateTime, Add
+Menu InsertDateTime, Add, Degree Symbol∙∙∙∙∙∙∙∙∙∙∙∙∙∙    °, CCase 
+Menu, InsertDateTime, Add
+Menu, InsertDateTime, Add, Date: Jan/01/1980, CCase
+Menu, InsertDateTime, Add, Time: 12:00 AM/PM, CCase
+Menu, InsertDateTime, Add, Week #, CCase
+Menu, InsertDateTime, Add
+Menu, InsertDateTime, Add
+
+;▫───────────────── Menu Headers ────────────────▫
+Menu Case, Add
+Menu Case, Add
+    Menu ChangeTextCases, Color, CCFDFF 		 ; (Mint) 
+Menu Case, Add, Change Text Cases, :ChangeTextCases
+    Menu, InsertDateTime, Color, CCFDFF 		 ; (Mint) 
+Menu Case, Add, Insert Date && Time, :InsertDateTime
+Menu Case, Add
+Menu Case, Add
+;∘───────────── THE MENUS End ────────────────────∘ 
+;•────────────────── Tray Menu ──────────────────•
+Menu, Tray, Color, 579BCB
+Menu, Tray, Click, 2
+;▫—— 
+Menu, Tray, Tip, KeysControl 
+Menu, Tray, Add 
+Menu, Tray, Add 
+Menu, Tray, NoStandard 		 ; Eliminates original menu
+Menu, Tray, Add, KeysControl
+Menu, Tray, Icon, KeysControl, imageres.dll, 76
+Menu, Tray, Default, KeysControl 	 ; Makes Bold
+Menu, Tray, Add 
+Menu, Tray, Add, About
+Menu, Tray, Icon, About, shell32.dll, 222
+Menu, Tray, Add 
+Menu, Tray, Add, Numlock
+Menu, Tray, Icon, Numlock, wmploc.dll, 95
+Menu, Tray, Add, ScrollLock
+Menu, Tray, Icon, ScrollLock, wmploc.dll, 95
+Menu, Tray, Add, CapsLock
+Menu, Tray, Icon, CapsLock, wmploc.dll, 95
+Menu, Tray, Add 
+Menu, Tray, Add, Script·Reload
+Menu, Tray, Icon, Script·Reload, imageres.dll, 288
+Menu, Tray, Add 
+Menu, Tray, Add, Script·Exit
+Menu, Tray, Icon, Script·Exit, shell32.dll, 272
+Menu, Tray, Add 
+Menu, Tray, Add 
+Return
+;∘───────────── Tray Menu End ─────────────────────∘ 
+
+;•────────────── No Sleep ─────────────────────────• 
+NoSleep: 			 ; Keeps PC interface active preventing screenlocking.
+{
+     MouseMove,0,0,0,R 	 ; Mouse pointer stays in place but sends a mouse event. 
+;           Soundbeep, 1700, 200 	 ; Activity verification.
+}
+Return
+;∘────────────── No Sleep End ──────────────────────∘ 
+
+;•∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ HOTKEY ∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙• 
+;▫──────────── 
+^i:: 	 ; <∙∙∙∙∙∙ (Ctrl + i) 
+Gosub, IndicateDot1
+    Gui, Color, LIME 	 ; ⬅ ⬅ IndicateDot Color. 
+Gosub, IndicateDot2
+
+    GetText(TempText)
+    Menu Case, Show 
+Return
+;▫──────────── 
+;∘∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙ HOTKEY End ∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∘ 
+
+;•───────────── THE CASES ────────────────────────• 
+;▫──────────── 
+CCase:
+  Switch A_ThisMenuItem { 
+
+    Case "CHANGE_CASE":
+            GoSub, CHANGE_CASE
+;▫──────────── 
+;•─────────────── CHANGE TEXT CASES ──────────────•
+;▫──────────── 
+    Case "UPPERCASE":
+            GoSub, Highlighted1
+      StringUpper, TempText, TempText
+            clipboard := "" TempText ""
+;▫──────────── 
+    Case "lowercase":
+            GoSub, Highlighted1
+      StringLower, TempText, TempText
+            clipboard := "" TempText ""
+;▫──────────── 
+    Case "Sentence case":
+            GoSub, Highlighted1
+      StringLower, TempText, TempText
+      TempText := RegExReplace(TempText, "((?:^|[.!?]\s+)[a-z])", "$u1")
+            clipboard := "" TempText ""
+;▫──────────── 
+    Case "Title Case":
+            GoSub, Highlighted1
+      StringLower, TempText, TempText, T
+            clipboard := "" TempText ""
+;▫──────────── 
+    Case "iNVERT cASE":
+            GoSub, Highlighted1
+      {
+         CopyClipboardCLM()
+         Inv_Char_Out := ""
+         Loop % StrLen(Clipboard)
+         {
+             Inv_Char := SubStr(Clipboard, A_Index, 1)
+             if Inv_Char is Upper
+                 Inv_Char_Out := Inv_Char_Out Chr(Asc(Inv_Char) + 32)
+             else if Inv_Char is Lower
+                 Inv_Char_Out := Inv_Char_Out Chr(Asc(Inv_Char) - 32)
+             else
+                 Inv_Char_Out := Inv_Char_Out Inv_Char
+         }
+         Clipboard := Inv_Char_Out
+         PasteClipboardCLM()
+      }
+;▫──────────── 
+;•────────────────── DATE & TIME ──────────────────•
+;▫────────  Degrees Symbol ──────────▫
+    Case "Degree Symbol∙∙∙∙∙∙∙∙∙∙∙∙∙∙    °": 
+        WinActivate % "ahk_id" hWnd
+        SendInput {Raw}°%A_SPACE%
+            clipboard := "° "
+        GoSub, SoundBeeped 
+    Return
+;▫──────── Month/Day/Year : Date ─────▫  Oct/29/2023 · 06:00:33 PM ·  Week 
+Case "Date: Jan/01/1980":
+        WinActivate % "ahk_id" hWnd
+      FormatTime, CurrentDateTime,,MMM/dd/yyyy · 
+      SendInput %CurrentDateTime% 
+            clipboard := CurrentDateTime
+      exit
+;▫──────── 12:00 PM : TIME ──────────▫
+Case "Time: 12:00 AM/PM":
+        WinActivate % "ahk_id" hWnd
+      FormatTime, CurrentDateTime,, hh:mm:ss tt · 
+      SendInput %CurrentDateTime% 
+            clipboard := CurrentDateTime
+      exit
+;▫──────── Week Number ────────────▫  Oct/29/2023 · 06:04:40 PM ·  Week 43 · 
+Case "Week #": 
+        WinActivate % "ahk_id" hWnd
+FormatTime WeekNow, , YWeek
+    SendInput Week%A_Space%
+        SendInput % WeekNow := SubStr(WeekNow, -1) +0
+    SendInput  %A_Space%·%A_Space%
+            clipboard := "Week: " . WeekNow
+        GoSub, SoundBeeped 
+      exit
+;▫──────────── 
+;▫──────────────── CASE CLOSING ────────────────▫ 
+; ❪ Keep At Bottom of all Case Things ❫
+} 	 ; ⮘⮘ Keep this last curly bracket at the end of ALL Case Things! 
+
+PutText(TempText)
+SetCapsLockState, Off
+Return
+; ❪ Keep At Bottom of all Case Things ❫
+
+;▫───────────────── THE CASES End ───────────────▫ 
+
+;•──────────── CASES FUNCTIONS ───────────────────• 
+;▫──────────── 
+; Copies the selected text to a variable while preserving the clipboard.
+GetText(ByRef MyText = "")
+{
+   SavedClip := ClipboardAll
+   Clipboard =
+   Send ^c
+   ClipWait 0.5
+   If ERRORLEVEL
+   {
+      Clipboard := SavedClip
+      MyText =
+      Return
+   }
+   MyText := Clipboard
+   Clipboard := SavedClip
+   Return MyText
+SetCapsLockState, Off
+}
+;▫──────────── 
+; Pastes text from a variable while preserving the clipboard.
+PutText(MyText)
+{
+   SavedClip := ClipboardAll 
+   Clipboard =              ; For better compatability
+   Sleep 20                 ; with Clipboard History
+   Clipboard := MyText
+   Send ^v
+   Sleep 100
+   Clipboard := SavedClip
+SetCapsLockState, Off
+   Return
+}
+SetCapsLockState, Off
+Send, {capslock up}
+;▫──────────── 
+CopyClipboard()
+{
+    global ClipSaved := ""
+    ClipSaved := ClipboardAll  ; save original clipboard contents
+    Clipboard := ""  ; start off empty to allow ClipWait to detect when the text has arrived
+    Send {Ctrl down}c{Ctrl up}
+    Sleep 150
+    ClipWait, 1.5, 1
+    if ErrorLevel
+    {
+        Clipboard := ClipSaved  ; restore the original clipboard contents
+        ClipSaved := ""  ; clear the variable
+        return
+    }
+}
+;▫──────────── 
+CopyClipboardCLM()
+{
+    global ClipSaved
+    WinGet, id, ID, A
+    WinGetClass, class, ahk_id %id%
+    if (class ~= "(Cabinet|Explore)WClass|Progman")
+        Send {F2}
+    Sleep 100
+    CopyClipboard()
+    if (ClipSaved != "")
+        Clipboard := Clipboard
+    else
+        Exit
+}
+;▫──────────── 
+PasteClipboardCLM()
+{
+    global ClipSaved
+    WinGet, id, ID, A
+    WinGetClass, class, ahk_id %id%
+    if (class ~= "(Cabinet|Explore)WClass|Progman")
+        Send {F2}
+    Send ^v
+    Sleep 100
+    Clipboard := ClipSaved
+    ClipSaved := ""
+    Exit
+}
+;▫────────────  
+;▫─────────────── CASES FUNCTIONS End ─────────────▫ 
+
+;•───────────── KEY STATES ────────────────────────• 
+;•──────────── NumLock  Toggle ─────────────────────• 
+    Toggle := 0
+Numlock:
+    Toggle := !Toggle 
+        if (Toggle = 1) {
+        SetNumLockState, AlwaysOn 
+            GoSub, SoundBeeped 
+        Menu, Tray, Icon, Numlock, wmploc.dll, 66
+    } else {
+        SetNumLockState, Off 
+            GoSub, SoundBeeped 
+       Menu, Tray, Icon, Numlock, wmploc.dll, 95
+    }
+Return 
+;∘──────────── NumLock  Toggle End ──────────────────∘ 
+;•──────────── ScrollLock  Toggle ─────────────────────• 
+    Toggle := 0
+ScrollLock:
+    Toggle := !Toggle 
+        if (Toggle = 1) {
+        SetScrollLockState, On 
+            GoSub, SoundBeeped 
+        Menu, Tray, Icon, ScrollLock, wmploc.dll, 66
+    } else {
+        SetScrollLockState, AlwaysOff 
+       Menu, Tray, Icon, ScrollLock, wmploc.dll, 95
+            GoSub, SoundBeeped 
+    }
+Return 
+;∘──────────── ScrollLock  Toggle End ──────────────────∘ 
+;•──────────── CapsLock  Toggle ──────────────────────• 
+    Toggle := 0
+CapsLock:
+    Toggle := !Toggle 
+        if (Toggle = 1) {
+        SetCapsLockState, On 
+            GoSub, SoundBeeped 
+        Menu, Tray, Icon, CapsLock, wmploc.dll, 66
+    } else {
+        SetCapsLockState, AlwaysOff 
+       Menu, Tray, Icon, CapsLock, wmploc.dll, 95
+            GoSub, SoundBeeped 
+    }
+    Return
+;∘──────────── CapsLock  Toggle End ──────────────────∘ 
+;∘───────────── KEY STATES End ─────────────────────∘ 
+
+;•───────────── Abouts ───────────────────────────• 
+^!I:: 		 ; (Ctrl+ALT+I)
+About:
+    time := 30           ; Seconds in timer.
+
+Gosub, IndicateDot1
+    Gui, Color, LIME 	 ; ⬅ ⬅ IndicateDot Color. 
+Gosub, IndicateDot2
+
+Gui, 
+    +AlwaysOnTop
+    -Caption 
+    +E0x02000000 +E0x00080000 
+    +hwndHGUI 
+    +hWndhMyGUI 
+    +LastFound
+    +ToolWindow
+Gui, Color, BLACK
+Gui, Margin, 15, 25
+
+Gui, Font, s18 w800 q5, ARIAL
+Gui, Add, Text, x0 y10 w300 cBLACK BackgroundTrans Center, Keys Control ; Foreground text.
+Gui, Add, Text, x1 y11 w300 c007FFF BackgroundTrans Center, Keys Control ; Background text.
+
+Gui, Font, s10 w400 c99D5FF q5, CALIBRI
+Gui, Add, Text, x0 y45 w300 BackgroundTrans Center, NumLock`, ScrollLock`, && CapsLock
+
+Gui, Font, s10 w400 c007FFF q5 Norm, ARIAL
+Gui, Add, Text, x15 y65, • Toggle Locks Through Tray Icon Right Click.
+
+
+Gui, Font, s8 w200 c99D5FF Strike q5, ARIAL
+Gui, Add, Text, x0 y80 w300 Center BackgroundTrans, %A_TAB%%A_TAB%%A_TAB%%A_TAB%%A_TAB%
+
+Gui, Font, s10 w400 c007FFF Norm q5, ARIAL
+Gui, Add, Text, x15 y95 BackgroundTrans, • Change Text Cases ∙∙∙∙
+Gui, Font, s8 w200 c99D5FF q5, CALIBRI
+Gui, Add, Text, x0 y110 w300 Center BackgroundTrans,UPPER CASE - lower case
+Gui, Add, Text, x0 y125 w300 Center BackgroundTrans,Sentence case - Title Case
+Gui, Add, Text, x0 y140 w300 Center BackgroundTrans,and iNVERT cASE
+
+Gui, Font, s10 w400 c007FFF Norm q5, ARIAL
+Gui, Add, Text, x25 y155 BackgroundTrans, To change text cases...
+Gui, Font, s10 w400 cFFFF67 Bold Italic q5, ARIAL
+Gui, Add, Text, x35 y170 BackgroundTrans, Highlight text,
+Gui, Font, s10 w400 c007FFF Norm q5, ARIAL
+Gui, Add, Text, x127 y170 BackgroundTrans, then press
+Gui, Font, s10 c47FFF0 Bold q5, Times New Roman
+Gui, Add, Text, x192 y170  BackgroundTrans, Ctrl + I
+Gui, Font, s10 w400 c007FFF Norm q5, ARIAL
+Gui, Add, Text, x35 y185 BackgroundTrans, Make selection from popup.
+
+Gui, Font, s8 w200 c99D5FF Strike q5, ARIAL
+Gui, Add, Text, x0 y200 w300 Center BackgroundTrans, %A_TAB%%A_TAB%%A_TAB%%A_TAB%%A_TAB%
+
+Gui, Font, s10 w400 c007FFF Norm q5, ARIAL
+Gui, Add, Text, x15 y215 BackgroundTrans, • Insert Degree  symbol`,
+Gui, Font, s12 w400 c99D5FF Norm q5, CALIBRI
+Gui, Add, Text, x101 y215 BackgroundTrans, °
+Gui, Font, s10 w400 c007FFF Norm q5, ARIAL
+Gui, Add, Text, x35 y230 BackgroundTrans, Date`,Time`, or Week # ∙∙∙∙
+
+Gui, Font, s8 w200 c99D5FF Norm q5, CALIBRI
+Gui, Add, Text, x0 y245 w300 BackgroundTrans Center, Mo/Day/Year · 12:30:15 AM · Week 44 · 
+
+
+Gui, Font, s10 w400 c007FFF Bold q5, ARIAL
+Gui, Add, Text, x35 y260 BackgroundTrans, Press 
+Gui, Font, s10 c47FFF0 q5, Times New Roman
+Gui, Add, Text, x72 y260 BackgroundTrans, Ctrl + I`,
+Gui, Font, s10 w400 c007FFF Norm q5, ARIAL
+Gui, Add, Text, x118 y260 BackgroundTrans, and select from popup.
+
+Gui, Font, s8 w200 c99D5FF Strike q5, ARIAL
+Gui, Add, Text, x0 y275 w300 Center BackgroundTrans, %A_TAB%%A_TAB%%A_TAB%%A_TAB%%A_TAB%
+
+Gui, Font, s8 w200 Norm q5, Segoe UI
+Gui, Add, Text, x25 y295 c00C000 BackgroundTrans Center gReload, • RELOAD •`nAPP
+Gui, Add, Text, x235 y295 cE10000 BackgroundTrans Center gExit, • EXIT •`nAPP
+
+Gui, Font, s10 w400 Norm q5, ARIAL
+Gui, Font, s11 w400 c99D5FF Underline q5, CALIBRI
+Gui, Add, Text, x83 y310 BackgroundTrans, Closing in        seconds...
+Gui, Font, Norm
+Gui, Add, Text, x145 y310 w20 c0095FF BackgroundTrans Center vCount
+
+Gui, Font, Norm
+Gui, Show, w300 Hide
+WinGetPos, X, Y, W, H
+    R := Min(W, H) // 5 
+WinSet, Region, 0-0 W%W% H%H% R%R%-%R% 
+
+Gui, Show, x1550 y600, Timer
+    OnMessage(0x0201, "WM_LBUTTONDOWNdrag")
+SetTimer, ExitGUI, 1000
+Return
+
+ExitGUI:
+    GuiControl,, Count, % --time
+        If !time {
+    SetTimer, ExitGUI, Off
+Gui, Destroy
+} 
+Return
+
+;∘──────────── Abouts End ────────────────────────∘ 
+
+;•───────────── Gui Dragging ───────────────────────• 
+WM_LBUTTONDOWNdrag() { 
+   PostMessage, 0x00A1, 2, 0
+} 
+;∘───────────── Gui Dragging End ────────────────────∘ 
+
+;•─────────── Reload/Exit Routine ────────────────────• 
+RETURN
+;▫——— RELOAD ——— RELOAD ———▫ 
+^Home:: 		 ; (Ctrl + [Home] 2 times)
+If (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 250)
+Script·Reload:
+Reload:
+
+Gosub, IndicateDot1
+    Gui, Color, BLUE 	 ; ⬅ ⬅ IndicateDot Color. 
+Gosub, IndicateDot2
+
+SoundGet, Master_Volume
+    SoundSet, 2
+    Soundbeep, 1600, 75
+    Soundbeep, 1400, 75
+    Sleep, 100
+SoundSet, % Master_Volume
+        Reload
+Return
+;▫——— EXIT ————— EXIT ———▫ 
+^Esc:: 		 ; (Ctrl + [Esc] 2 times)
+If (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 250)
+Exit:
+Close:
+Script·Exit:
+    Gui, Destroy
+Menu, Tray, Icon, shell32.dll, 272 	 ; Blank Paper w/Red 'X'
+
+Gosub, IndicateDot1
+    Gui, Color, RED 	 ; ⬅ ⬅ IndicateDot Color. 
+Gosub, IndicateDot2
+
+;∘──────────── Terminates all AHK apps EXCEPT the calling script.
+    ExitAll() 
+        Return
+
+ExitAll() {  
+    DetectHiddenWindows, % ( ( DHW:=A_DetectHiddenWindows ) + 0 ) . "On"
+    WinGet, L, List, ahk_class AutoHotkey
+        Loop %L%
+            If ( L%A_Index% <> WinExist( A_ScriptFullPath " ahk_class AutoHotkey" ) )
+        PostMessage, 0x111, 65405, 0,, % "ahk_id " L%A_Index%
+    DetectHiddenWindows, %DHW%
+
+Sleep, 200
+;∘──────────── Refreshes Tray icon area and clears any phantom tray icons.
+    { 
+  eee := DllCall( "FindWindowEx", "uint", 0, "uint", 0, "str", "Shell_TrayWnd", "str", "")
+  ddd := DllCall( "FindWindowEx", "uint", eee, "uint", 0, "str", "TrayNotifyWnd", "str", "")
+  ccc := DllCall( "FindWindowEx", "uint", ddd, "uint", 0, "str", "SysPager", "str", "")
+  hNotificationArea := DllCall( "FindWindowEx", "uint", ccc, "uint", 0, "str", "ToolbarWindow32", "str", "Notification Area")
+  
+  xx = 3
+  yy = 5
+  Transform, yyx, BitShiftLeft, yy, 16
+  loop, 6 ;152
+  {
+    xx += 15
+    SendMessage, 0x200, , yyx + xx, , ahk_id %hNotificationArea%
+        ; Soundbeep, 1400, 75
+  }
+}
+
+SoundGet, Master_Volume
+    SoundSet, 2
+    Soundbeep, 1900, 75
+        Soundbeep, 1600, 75
+    Soundbeep, 1800, 75
+        Soundbeep, 1500, 75
+    Soundbeep, 1700, 75
+        Soundbeep, 1400, 75
+            Soundbeep, 1200, 300
+    Sleep, 100
+SoundSet, % Master_Volume
+    Sleep, 150
+    ExitApp 		; Terminates this script.
+}
+    ExitApp
+Return
+;∘─────────── Reload/Exit Routine End ────────────────∘ 
+
+;•────────────── Script Updater ─────────────────────• 
+UpdateCheck: 	 ; Check if the script file has been modified.
+    oldModTime := currentModTime
+FileGetTime, currentModTime, %A_ScriptFullPath%
+;∘—— If the modification timestamp has changed, reload the script. 
+    if  (oldModTime = currentModTime) Or (oldModTime = "")
+        Return
+  Gosub, IndicateDot1
+Gui, Color, BLUE 	 ; ← ← IndicateDot Color.
+  Gosub, IndicateDot2
+Reload
+;∘──────────── Script Updater End ───────────────────∘ 
+
+;•───────────── Auto-Execute Sub ───────────────────• 
+AutoExecute: 
+#NoEnv ; Recommended for performance and future compatibility.
+#Persistent ; Keeps a script permanently running until user closes it or ExitApp is encountered.
+#SingleInstance, Force ; Determines whether a script is allowed to run again when it is already running.
+SetBatchLines -1 ; Determines how fast script will run.
+DetectHiddenWindows, On ; Determines whether invisible windows (scripts) are "seen" by the script.
+SetTimer, UpdateCheck, 500 ; Checks for script changes every 1/2 second. (Script Updater)
+SetKeyDelay, 250 ; Sets the TapCount. (tied to Reload/Exit routine, w/use for any hotkey)
+; Menu, Tray, Icon, imageres.dll, 76 ; KeysControl dll icon.
+Return
+;∘─────────── Auto-Execute Sub End ──────────────────∘ 
+
+;•─────────────── GoSubs ─────────────────────────• 
+;▫──────────── 
+IndicateDot1:
+Gui, Destroy
+SysGet, MonitorWorkArea, MonitorWorkArea
+SysGet, TaskbarPos, 4
+Gui, +AlwaysOnTop -Caption +hwndHGUI +LastFound
+Return
+;•—— 
+IndicateDot2:
+Gui, Margin, 13, 13 	 ; ← ← Dot Size.
+Gui, Show, Hide
+WinGetPos, , , WinWidth, WinHeight, ahk_id %HGUI%
+NewX := MonitorWorkAreaRight - 80
+NewY := MonitorWorkAreaBottom - WinHeight - 5
+R := Min(WinWidth, WinHeight) // 1 	 ; ← ← Set value of cornering. (0.5=Oval, 0=square, 1= round, 5=rounded corners).
+WinSet, Region, 0-0 W%WinWidth% H%WinHeight% R%R%-%R%
+Gui, Show, x%NewX% y%NewY%
+Sleep, 100
+Gui, Destroy
+Return
+;▫──────────── 
+Highlighted1: 		 ; Case Change
+    StoredClip := ClipboardAll
+    Clipboard = 
+        Send, ^c
+    If Clipboard = 
+    {
+        GoSub, SoundBeepError
+        GoSub, GuiBegin
+    Gui, Add, Text, +BackgroundTrans Center y+5, Text was         highlighted.
+    Gui, Font, s10 cRED BOLD, ARIAL
+    Gui, Add, Text, x70 y70 BackgroundTrans , NOT
+    Gui, Font, s10 cF5DE00 NORM, ARIAL
+    Gui, Add, Text, x15 y+2 w150 Center BackgroundTrans, Case change has failed.`nPlease try again.
+        GoSub, GuiEnd
+    Sleep, 5000
+        Gui, Destroy
+    Return
+}
+    Else
+        Return
+Return
+;▫──────────── 
+GuiBegin:
+    Gui, 
+        +AlwaysOnTop
+        -Caption 
+        +hwndHGUI 
+        +LastFound
+        +E0x02000000 +E0x00080000 ; Double Buffer to reduce Gui flicker.
+    Gui, Color, BLACK
+    Gui, Font, s14 cF5DE00, ARIAL
+    Gui, Margin, 15, 15
+    Gui, Add, Text, w150 h50 Center +BackgroundTrans +0x0200 0x00800000, ATTENTION!!  	 ; (0x00800000 = Creates a thin-line border box) (+0x0200 = Vertical Center)
+    Gui, Font, s10
+Return
+;▫──────────── 
+GuiEnd:
+    Gui, Show, Hide
+        WinGetPos, X, Y, W, H
+        R := Min(W, H) // 5 	 ; <<<<-----  Set value to amount of cornering. (0.5=Oval, 0=square, 1= capsule, 5=rounded corners).
+        WinSet, Region, 0-0 W%W% H%H% R%R%-%R% 	  ; <<<<-----  Cornering math.
+    Gui, Show, NoActivate, 
+        OnMessage(0x0201, "WM_LBUTTONDOWN")
+Return
+;▫──────────── 
+^!P::
+KeysControl:
+    GoSub, Soundbeeped
+Progress, b c01 x1550 y550 cwBLACK ct007FFF wm600 w300 h90 fs10 zh0, `n•  Insert Degree° symbol`, Date`, Time`, or Week#`n•  Locks NumLock and ScrollLock with toggles`n•  Prevents CapsLock accidental toggling, , , ARIAL
+    Sleep, 5000
+Progress, Off
+Return
+;∘──────────── 
+CHANGE_CASE:
+    GoSub, SoundBeepError
+;•—— Reserved for ??
+    Return
+;▫──────────── 
+SoundBeeped: 
+    SoundGet, Master_Volume
+    SoundSet, 3
+    Soundbeep, 2100, 75
+    SoundSet, % Master_Volume
+Return
+;▫──────────── 
+SoundBeepError: 
+    SoundGet, Master_Volume
+    SoundSet, 5
+    Soundbeep, 1600, 100
+    Soundbeep, 1400, 100
+    SoundSet, % Master_Volume
+Return
+;▫──────────── 
+Script·Edit:
+SoundGet, Master_Volume
+    SoundSet, 2
+        Soundbeep, 1500, 75
+       Soundbeep, 1500, 75
+    Sleep, 100
+SoundSet, % Master_Volume
+    Edit
+Return
+;∘──────────── 
+;∘────────────── GoSubs End ──────────────────────∘ 
+
+/* 
+_________________________________________________________________ 
+ ∘﹤⪻⋘⪡⫷⫷⫷⫷⫷⫷ SCRIPT END ⫸⫸⫸⫸⫸⫸⪢⋙⪼﹥∘ 
+‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ 
+*/ 
+
