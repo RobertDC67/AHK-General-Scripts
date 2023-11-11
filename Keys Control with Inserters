@@ -23,6 +23,11 @@ Gosub, AutoExecute
 SetTimer, NoSleep, 465000 		 ; No Sleep timer. Runs every 7 3/4 minutes.
 ;∘──────────── Auto-Execute End ────────────────────∘ 
 
+;•─────────── Set Initial Key States ───────────────────• 
+SetNumLockState, Off
+SetScrollLockState, Off
+SetCapsLockState, Off
+;∘────────── Set Initial Key States End ─────────────────∘ 
 
 ;•───────────────── THE MENUS ───────────────────•
 GroupAdd All
@@ -76,11 +81,8 @@ Menu, Tray, Add
 Menu, Tray, Add 
 Menu, Tray, NoStandard 		 ; Eliminates original menu
 Menu, Tray, Add, KeysControl
-Menu, Tray, Icon, KeysControl, imageres.dll, 76
+Menu, Tray, Icon, KeysControl, wmploc.dll, 65
 Menu, Tray, Default, KeysControl 	 ; Makes Bold
-Menu, Tray, Add 
-Menu, Tray, Add, About
-Menu, Tray, Icon, About, shell32.dll, 222
 Menu, Tray, Add 
 Menu, Tray, Add, Numlock
 Menu, Tray, Icon, Numlock, wmploc.dll, 95
@@ -320,11 +322,11 @@ Return
 ScrollLock:
     Toggle := !Toggle 
         if (Toggle = 1) {
-        SetScrollLockState, On 
+        SetScrollLockState, AlwaysOn 
             GoSub, SoundBeeped 
         Menu, Tray, Icon, ScrollLock, wmploc.dll, 66
     } else {
-        SetScrollLockState, AlwaysOff 
+        SetScrollLockState, Off 
        Menu, Tray, Icon, ScrollLock, wmploc.dll, 95
             GoSub, SoundBeeped 
     }
@@ -335,11 +337,11 @@ Return
 CapsLock:
     Toggle := !Toggle 
         if (Toggle = 1) {
-        SetCapsLockState, On 
+        SetCapsLockState, AlwaysOn 
             GoSub, SoundBeeped 
         Menu, Tray, Icon, CapsLock, wmploc.dll, 66
     } else {
-        SetCapsLockState, AlwaysOff 
+        SetCapsLockState, Off 
        Menu, Tray, Icon, CapsLock, wmploc.dll, 95
             GoSub, SoundBeeped 
     }
@@ -349,7 +351,8 @@ CapsLock:
 
 ;•───────────── Abouts ───────────────────────────• 
 ^!I:: 		 ; (Ctrl+ALT+I)
-About:
+KeysControl:
+
     time := 30           ; Seconds in timer.
 
 Gosub, IndicateDot1
@@ -439,7 +442,7 @@ WinGetPos, X, Y, W, H
     R := Min(W, H) // 5 
 WinSet, Region, 0-0 W%W% H%H% R%R%-%R% 
 
-Gui, Show, x1550 y600, Timer
+Gui, Show, x1550 y600 NA, Timer
     OnMessage(0x0201, "WM_LBUTTONDOWNdrag")
 SetTimer, ExitGUI, 1000
 Return
@@ -473,7 +476,7 @@ Gosub, IndicateDot1
 Gosub, IndicateDot2
 
 SoundGet, Master_Volume
-    SoundSet, 2
+    SoundSet, 4
     Soundbeep, 1600, 75
     Soundbeep, 1400, 75
     Sleep, 100
@@ -525,7 +528,7 @@ Sleep, 200
 }
 
 SoundGet, Master_Volume
-    SoundSet, 2
+    SoundSet, 4
     Soundbeep, 1900, 75
         Soundbeep, 1600, 75
     Soundbeep, 1800, 75
@@ -564,7 +567,7 @@ SetBatchLines -1 ; Determines how fast script will run.
 DetectHiddenWindows, On ; Determines whether invisible windows (scripts) are "seen" by the script.
 SetTimer, UpdateCheck, 500 ; Checks for script changes every 1/2 second. (Script Updater)
 SetKeyDelay, 250 ; Sets the TapCount. (tied to Reload/Exit routine, w/use for any hotkey)
-; Menu, Tray, Icon, imageres.dll, 76 ; KeysControl dll icon.
+Menu, Tray, Icon, wmploc.dll, 65
 Return
 ;∘─────────── Auto-Execute Sub End ──────────────────∘ 
 
@@ -635,14 +638,6 @@ GuiEnd:
         OnMessage(0x0201, "WM_LBUTTONDOWN")
 Return
 ;▫──────────── 
-^!P::
-KeysControl:
-    GoSub, Soundbeeped
-Progress, b c01 x1550 y550 cwBLACK ct007FFF wm600 w300 h90 fs10 zh0, `n•  Insert Degree° symbol`, Date`, Time`, or Week#`n•  Locks NumLock and ScrollLock with toggles`n•  Prevents CapsLock accidental toggling, , , ARIAL
-    Sleep, 5000
-Progress, Off
-Return
-;∘──────────── 
 CHANGE_CASE:
     GoSub, SoundBeepError
 ;•—— Reserved for ??
