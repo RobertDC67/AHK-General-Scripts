@@ -1,0 +1,131 @@
+
+/*
+◘◘◘◘◘◘◘◘◘◘◘◘◘ ✎ NOTES ✎ ◘◘◘◘◘◘◘◘◘◘◘◘◘
+•------------------------------------------------------------------------------• 
+○-------------------------  Base Notes -------------------------○ 
+» Refresh Script-------- Ctrl + [HOME] key rapidly clicked 2 times. 
+» Exit Script------------- Ctrl + [Esc] key rapidly clicked 2 times. 
+
+» Script Updater: Auto-reload script upon saved changes.
+    ▹ If you make any changes to the script file and save it, 
+          the script will automatically reload itself and continue
+          running without manual intervention.
+•------------------------------------------------------------------------------• 
+○--------------------  Script Specific Notes --------------------○ 
+» SOURCE :  https://www.autohotkey.com/boards/viewtopic.php?f=76&t=124533#p553542
+» 
+•------------------------------------------------------------------------------• 
+○------ Further notes at script end ∙ ∙ ∙  Yes:   No: ✔ ------○
+•------------------------------------------------------------------------------• 
+◘◘◘◘◘◘◘◘◘◘◘ ✎ NOTES END ✎ ◘◘◘◘◘◘◘◘◘◘◘◘
+*/
+
+;•--------------------- Auto-Execute ---------------------------------------• 
+Gosub, AutoExecute
+;○--------------------- Auto-Execute End ---------------------------------○ 
+
+
+
+
+;;-------------------------------- 
+
+app := "Notepad"
+
+;;-------------------------------- 
+
+F3::
+If WinExist(app)
+ If WinActive()
+  WinMinimize
+ Else WinActivate
+Else {
+ SoundBeep 1500
+ runApp(app)
+}
+Return
+
+;;-------------------------------- 
+
+runApp(appName) { ; https://www.autohotkey.com/boards/viewtopic.php?p=438517#p438517
+ For app in ComObjCreate("Shell.Application").NameSpace("shell:AppsFolder").Items
+  RunWait, % app.Name = appName ? "explorer shell:appsFolder\" app.Path : ""
+}
+
+;;-------------------------------- 
+
+
+
+;•--------------------- Reload/Exit Routine -------------------------------• 
+RETURN
+;------------ RELOAD ------- RELOAD ------- RELOAD ---------  
+^Home:: 
+If (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200) 	 ; ←←← Double-Tap in less than 200 milliseconds.
+        Reload
+Return
+;--------------- EXIT ------------ EXIT --------- EXIT ------------ 
+^Esc:: 
+If (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200) 	 ; ←←← Double-Tap in less than 200 milliseconds.
+        Gui, Destroy
+        ExitApp
+Return
+;○------------------ Reload/Exit Routine End ----------------------------○ 
+
+;•--------------------- Script Updater -------------------------------------• 
+UpdateCheck: 	 ; Check if the script file has been modified.
+    oldModTime := currentModTime
+FileGetTime, currentModTime, %A_ScriptFullPath%
+;∘—— If the modification timestamp has changed, reload the script. 
+    if  (oldModTime = currentModTime) Or (oldModTime = "")
+        Return
+  Gosub, IndicateDot1
+    Soundbeep, 2100, 100
+Gui, Color, BLUE 	 ; ← ← IndicateDot Color.
+  Gosub, IndicateDot2
+Reload
+;○------------------- Script Updater End ---------------------------------○ 
+
+;•--------------------- Auto-Execute Sub ---------------------------------• 
+AutoExecute: 
+#MaxThreadsPerHotkey, 3
+#NoEnv 				 ; Recommended for performance and future compatibility.
+#Persistent 			 ; Keeps a script permanently running until user closes it or ExitApp is encountered.
+#SingleInstance, Force 		 ; Determines whether a script is allowed to run again when it is already running.
+DetectHiddenWindows, On 		 ; Determines whether invisible windows (scripts) are "seen" by the script.
+SetBatchLines -1 			 ; Determines how fast script will run.
+SetTimer, UpdateCheck, 500 		 ; Checks for script changes every 1/2 second. (Script Updater)
+SetTitleMatchMode, 2 		 ; Window's title can contain WinTitle anywhere inside to be a match.
+SetTitleMatchMode, RegEx 		 ; Changes WinTitle, WinText, ExcludeTitle, and ExcludeText to accept regular expressions.
+Menu, Tray, Icon, imageres.dll, 98 	 ; Tray note icon.
+Return
+;○------------------ Auto-Execute Sub End ------------------------------○ 
+
+;•----------------------- GoSubs -------------------------------------------• 
+;--------------------------------------------- 
+IndicateDot1:
+Gui, Destroy
+SysGet, MonitorWorkArea, MonitorWorkArea
+SysGet, TaskbarPos, 4
+Gui, +AlwaysOnTop -Caption +hwndHGUI +LastFound
+Return
+;----------- 
+IndicateDot2:
+Gui, Margin, 13, 13 	 ; ← ← Dot Size.
+Gui, Show, Hide
+WinGetPos, , , WinWidth, WinHeight, ahk_id %HGUI%
+NewX := MonitorWorkAreaRight - 80
+NewY := MonitorWorkAreaBottom - WinHeight - 5
+R := Min(WinWidth, WinHeight) // 1 	 ; ← ← Set value of cornering. (0.5=Oval, 0=square, 1= round, 5=rounded corners).
+WinSet, Region, 0-0 W%WinWidth% H%WinHeight% R%R%-%R%
+Gui, Show, x%NewX% y%NewY%
+Sleep, 150
+Gui, Destroy
+Return
+;--------------------------------------------- 
+;○--------------------- GoSubs End ---------------------------------------○ 
+
+/* 
+ •-------------------------------------------------------------------------------------------------• 
+	  ∘﹤⪻⋘⪡⫷⫷⫷⫷⫷⫷ SCRIPT END ⫸⫸⫸⫸⫸⫸⪢⋙⪼﹥∘ 
+ •-------------------------------------------------------------------------------------------------• 
+*/ 
+
