@@ -1,0 +1,169 @@
+﻿
+/*
+;⮞--------------------- NOTES ----------------------------------------------∙ 
+∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
+∙--------------∙ Base Notes ∙--------------∙ 
+» Reload Script-------- DoubleTap--⮚ Ctrl + [HOME] 
+» Exit Script------------- DoubleTap--⮚ Ctrl + [Esc] 
+» Script Updater: Auto-reload script upon saved changes.
+    ▹ If you make any changes to the script file and save it, 
+          the script will automatically reload itself and continue
+          running without manual intervention.
+∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
+∙--------------∙ Script Specific Notes ∙--------------∙ 
+» SOURCE :  
+» 
+∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
+;∙---------------------- NOTES END ----------------------------------------∙ 
+*/
+; ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
+;⮞--------------------- Auto-Execute ---------------------------------------∙ 
+Gosub, AutoExecute
+;∙---------------------- Auto-Execute End ---------------------------------∙ 
+; ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
+
+
+
+#NoEnv
+SendMode Input
+SetWorkingDir %A_ScriptDir%
+SetTitleMatchMode, 2
+#SingleInstance force
+
+KeysCopy := "" 	 ; Initialize KeysCopy variable
+Toggle := 0 	 ; Initialize toggle state
+
+^t:: ; Define hotkey Ctrl+T
+    Toggle := !Toggle 	 ; Toggle recording state
+    if (Toggle) {
+        KeysCopy := "" 	 ; Clear previous keystrokes
+
+        MsgBox, , , Recording started!`nPress Ctrl+T again to stop.`n`nPress Alt+V to paste.`n(This message will disappear in 5 seconds.), 5
+
+        SetTimer, RecordKeys, 10 	 ; Start recording keystrokes
+
+    } else {
+
+        SetTimer, RecordKeys, Off 	; Stop recording keystrokes
+        MsgBox, , , Recording stopped!`nPress Alt+V to paste.`n`nRecorded Keys: %KeysCopy%, 4
+    }
+return
+
+
+
+RecordKeys:
+    Loop {
+        if GetKeyState("t", "P") and Toggle 	 ; Stop recording if Ctrl+T pressed again
+            break
+        Sleep, 10
+        Input, key, L1 V
+        KeysCopy .= key
+    }
+return
+
+;; PASTE
+!v:: 	 ; Define hotkey Alt+V
+    if (Toggle) {
+        MsgBox, , , Recording still in progress!`n`nPress Ctrl+T to stop recording., 2
+        return
+    }
+    if (KeysCopy != "") {
+        SendRaw, %KeysCopy% 	 ; Paste recorded keystrokes
+    } else {
+        MsgBox, , , No keystrokes recorded., 2
+    }
+return
+
+
+
+
+
+/*
+
+;; MsgBox CountDown Timer
+SetTimer, Msg, 1000
+MsgBox, 48,,% " This MsgBox will be off in " CountDown := 20,% CountDown
+SetTimer, Msg, Off
+SoundBeep
+Return
+
+Msg:
+ControlSetText, Static2,% " This MsgBox will be off in " --CountDown
+	, %A_ScriptName% ahk_class #32770
+Return
+
+
+
+
+
+*/
+
+
+
+
+
+; ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
+;⮞--------------------- Gui Drag ---------------------------------------------∙ 
+;;-------------- Gui Drag Pt.1 ------------
+;    OnMessage(0x0201, "WM_LBUTTONDOWNdrag")    ; Gui Drag Pt.1
+;;-------------- Gui Drag Pt.2 ------------ (keep towards script end)
+WM_LBUTTONDOWNdrag() {    ; Gui Drag Pt.2
+   PostMessage, 0x00A1, 2, 0
+} 
+;∙---------------------- Gui Drag End ---------------------------------------∙ 
+; ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
+;⮞--------------------- Reload/Exit Routine -------------------------------∙ 
+RETURN
+;------------ RELOAD ------- RELOAD ------- RELOAD ---------  
+^Home:: 
+If (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200) 	 ; ←←← Double-Tap in less than 200 milliseconds.
+    Soundbeep, 1700, 75
+    Reload
+Return
+;--------------- EXIT ------------ EXIT --------- EXIT ------------ 
+^Esc:: 
+If (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200) 	 ; ←←← Double-Tap in less than 200 milliseconds.
+    Soundbeep, 1700, 75
+        ExitApp
+Return
+;∙---------------------- Reload/Exit Routine End -------------------------∙ 
+; ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
+;⮞--------------------- Script Updater -------------------------------------∙ 
+UpdateCheck: 	 ; Check if the script file has been modified.
+    oldModTime := currentModTime
+FileGetTime, currentModTime, %A_ScriptFullPath%
+;∘—— If the modification timestamp has changed, reload the script. 
+    if  (oldModTime = currentModTime) Or (oldModTime = "")
+        Return
+    Soundbeep, 2100, 100
+Reload
+;∙---------------------- Script Updater End --------------------------------∙ 
+; ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
+;⮞--------------------- Auto-Execute Sub ----------------------------------∙ 
+AutoExecute:
+#MaxThreadsPerHotkey 2
+#NoEnv
+; #NoTrayIcon
+#Persistent
+#SingleInstance, Force
+SetBatchLines -1
+SetTimer, UpdateCheck, 500
+SetTitleMatchMode 2
+Menu, Tray, Icon, compstui.dll, 55
+Return
+;∙---------------------- Auto-Execute Sub End ---------------------------∙ 
+; ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
+;⮞--------------------- GoSubs ----------------------------------------------∙ 
+;--------------------------------------------- 
+
+;----------- 
+
+;--------------------------------------------- 
+;∙--------------------- GoSubs End -----------------------------------------∙ 
+; ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
+/* 
+ ⮞-------------------------------------------------------------------------------------------------⮜ 
+	  ∘﹤⪻⋘⪡⫷⫷⫷⫷⫷⫷ SCRIPT END ⫸⫸⫸⫸⫸⫸⪢⋙⪼﹥∘ 
+ ⮞-------------------------------------------------------------------------------------------------⮜ 
+*/ 
+
