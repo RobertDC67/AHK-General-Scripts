@@ -10,78 +10,56 @@ Gosub, AutoExecute
 ; ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
 
 
-; Reset variables
-clickCount := 0
+clickCount := 0    ;; Reset variables.
 clickPoints := []
-firstClickIgnored := false
+firstClickIgnored := false    ;; Flag to ignore the first click.
 
-; Mouse click handler
-MouseClickHandler:
+MouseClickHandler:    ;; If the first click has not been ignored yet, ignore this click.
     if (firstClickIgnored) {
     clickCount++
     MouseGetPos, clickX, clickY
     clickPoints[clickCount] := {x: clickX, y: clickY}
 
-    ; If two clicks have been recorded, calculate the angle
-    if (clickCount = 2) {
-        ; Get the coordinates of the first and second click
-        x1 := clickPoints[1].x
+    if (clickCount = 2) {    ;; If two clicks have been recorded, calculate the angle.
+        x1 := clickPoints[1].x    ;; Get the coordinates of the first and second click.
         y1 := clickPoints[1].y
         x2 := clickPoints[2].x
         y2 := clickPoints[2].y
 
-        ; Calculate the difference in coordinates
-        deltaX := x2 - x1
+        deltaX := x2 - x1    ;; Calculate the difference in coordinates.
         deltaY := y2 - y1
 
-        ; Calculate the angle in radians
-        angle := ATan(-deltaY / deltaX)
+angle := ATan(-deltaY / deltaX)    ;; Calculate the angle in radians using horizontal x-axis as zero.
 
-        ; Convert the angle to degrees
-        angleDegrees := angle * (180 / 3.141592653589793)
+angleDegrees := angle * (180 / 3.141592653589793)    ;; Convert the angle to degrees.
+    if (deltaX > 0 and deltaY < 0) {    ;; Adjust the angle based on quadrant.
+            
+angleDegrees := Abs(angleDegrees)    ;; First quadrant (0 to 90 degrees)
+    } else if (deltaX < 0) {
+        angleDegrees += 180    ;; Second and third quadrants (90 to 270 degrees)
+    } else if (deltaX > 0 and deltaY > 0) {
+        angleDegrees := 360 + angleDegrees    ;; Fourth quadrant (270 to 360 degrees)
+    }
 
-        ; Adjust the angle based on quadrant
-        if (deltaX > 0 and deltaY < 0) {
-            ; First quadrant (0 to 90 degrees)
-            angleDegrees := Abs(angleDegrees)
-        } else if (deltaX < 0) {
-            ; Second and third quadrants (90 to 270 degrees)
-            angleDegrees += 180
-        } else if (deltaX > 0 and deltaY > 0) {
-            ; Fourth quadrant (270 to 360 degrees)
-            angleDegrees := 360 + angleDegrees
+roundedAngle := Round(angleDegrees, 2)        ;; Round the angle.
+    Tooltip, Angle: %roundedAngle%°    ;; Display the angle in a tooltip.
+    Clipboard:= "Angle: "roundedAngle "°"    ;; Copy angle to clipboard.
+
+    clickCount := 0    ;; Reset variables for next calculation.
+    clickPoints := []
+    SetTimer, RemoveTooltip, -3000 ;; Remove tooltip after 3 seconds.
         }
-
-        ; Round the angle
-        roundedAngle := Round(angleDegrees, 2)
-
-        ; Display the angle in a tooltip
-        Tooltip, Angle: %roundedAngle%°
-
-        Clipboard:= "Angle: "roundedAngle "°"
-
-        ; Reset variables for next calculation
-        clickCount := 0
-        clickPoints := []
-        SetTimer, RemoveTooltip, -3000 ; Remove tooltip after 3 seconds
-    }
-        } else {
-    firstClickIgnored := true
+    } else {
+        firstClickIgnored := true
     }
 Return
 
-; Set the mouse click handler
-^LButton::Gosub, MouseClickHandler
+^LButton::Gosub, MouseClickHandler    ;; HOTKEY trigger.
 Return
 
-; Timer to remove tooltip
 RemoveTooltip:
     Tooltip
 Return
-
-
-
-
 
 
 
