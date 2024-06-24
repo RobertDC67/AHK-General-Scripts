@@ -28,4 +28,6 @@ Special Thanks to the Awesome Folks at AutoHotkey.com for all their assistance a
 
 • RussF
 
+• teadrinker
+
 • And several others who have been excellent teachers and coaches. 
