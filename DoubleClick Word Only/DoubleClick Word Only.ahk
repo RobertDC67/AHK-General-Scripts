@@ -12,7 +12,8 @@
 ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
 ∙--------------∙ Script Specific Notes ∙--------------∙ 
 » SOURCE :  https://www.autohotkey.com/boards/viewtopic.php?t=23842#p112787
-» Double clicking on a word selects only that word without any leading or trailing spaces or punctuation marks.  
+» Quickly Double-clicking on a word selects only that word without any leading or trailing spaces or punctuation marks.  
+» Triple-click still selects entire line, but click more moderately (slower).
 ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
 ;∙---------------------- NOTES END ----------------------------------------∙ 
 */
