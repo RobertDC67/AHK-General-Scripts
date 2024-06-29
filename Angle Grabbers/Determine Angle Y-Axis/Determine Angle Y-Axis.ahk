@@ -1,6 +1,6 @@
 ﻿
 
-
+;; SOURCE:  Self
 ;;  Determine angle between two mouse clicks from horizontal x-axis.
 
 ; ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
