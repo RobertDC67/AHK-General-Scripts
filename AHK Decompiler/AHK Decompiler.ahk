@@ -1,6 +1,6 @@
 ﻿;joedf's Revision - Update GUI + bugfix
 
-;http://www.autohotkey.com/board/topic/82986-ahk-l-decompiler-payload-method/
+;  SOURCE :  http://www.autohotkey.com/board/topic/82986-ahk-l-decompiler-payload-method/
 
 /*
 * AHK_L Decompiler / Source Extractor
