@@ -11,6 +11,7 @@
           running without manual intervention.
 ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
 ∙--------------∙ Script Specific Notes ∙--------------∙ 
+» SOURCE:  Original source is unknown at this time and unable to find again searching...so far.
 » Monitors a specified directory for changes to AHK scripts and reloads them if they are modified.  
 » See script end for summary...
 ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
