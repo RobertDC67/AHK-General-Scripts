@@ -1,8 +1,8 @@
 Miscellaneous scripts packaged in folders. 
 
-.png's created using PainshopPro 2023 Ultimate.
+.png's created using PainshopPro 2023 Ultimate.   ⮘ https://www.paintshoppro.com/en/products/paintshop-pro/ultimate/?alid=724582303.1719925844
 
-.ico's created using Greenfish Icon Editor v3.6.
+.ico's created using Greenfish Icon Editor v3.6.  ⮘ http://greenfishsoftware.org/gfie.php#apage
 
 ___
 
