@@ -4,6 +4,9 @@ Miscellaneous scripts packaged in folders.
 
 .ico's created using Greenfish Icon Editor v3.6.  ⮘ http://greenfishsoftware.org/gfie.php#apage
 
+Folder icons created using FolderIco 6.2.1   ⮘ https://www.folderico.com/
+    (although looking into freewrae... Folder Marker   ⮘ https://foldermarker.com/en/)
+
 ___
 
 
