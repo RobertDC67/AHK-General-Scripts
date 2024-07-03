@@ -11,7 +11,7 @@ Folder icons created using FolderIco 6.2.1   ⮘ https://www.folderico.com/
 ___
 
 
-** MMenu is apparently hard to find with everything, so putting here for others to find.
+** MMenu - Is apparently hard to find with everything, so putting here for others to find.
 
 ___
 
