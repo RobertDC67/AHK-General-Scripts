@@ -12,7 +12,8 @@
 ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
 ∙--------------∙ Script Specific Notes ∙--------------∙ 
 » SOURCE :  SOURCE :  https://www.autohotkey.com/boards/viewtopic.php?f=76&t=122573#p544396
-» 
+» If a program is running as administrator, it will have higher precedence in the hotkey selection.
+    ▹ Running AHK as admin also, solves the problem.
 ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
 ;∙---------------------- NOTES END ----------------------------------------∙ 
 */
@@ -46,34 +47,20 @@ if not (A_IsAdmin or RegExMatch(full_command_line, " /restart(?!\S)"))
 }
 
 
-;---------------⮚         SCRIPT CODE GOES HERE         ⮘--------------
-;---------⮚					⮘---------
 
 
-
-
-
-; ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
-;⮞--------------------- Gui Drag ---------------------------------------------∙ 
-;;-------------- Gui Drag Pt.1 ------------
-;    OnMessage(0x0201, "WM_LBUTTONDOWNdrag")    ; Gui Drag Pt.1
-;;-------------- Gui Drag Pt.2 ------------ (keep towards script end)
-WM_LBUTTONDOWNdrag() {    ; Gui Drag Pt.2
-   PostMessage, 0x00A1, 2, 0
-} 
-;∙---------------------- Gui Drag End ---------------------------------------∙ 
 ; ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
 ;⮞--------------------- Reload/Exit Routine -------------------------------∙ 
 RETURN
 ;------------ RELOAD ------- RELOAD ------- RELOAD ---------  
 ^Home:: 
-If (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200) 	 ; ←←← Double-Tap in less than 200 milliseconds.
+If (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200) 	 ; ←←← Double-Tap in less than 200 milliseconds.
     Soundbeep, 1700, 75
     Reload
 Return
 ;--------------- EXIT ------------ EXIT --------- EXIT ------------ 
 ^Esc:: 
-If (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200) 	 ; ←←← Double-Tap in less than 200 milliseconds.
+If (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200) 	 ; ←←← Double-Tap in less than 200 milliseconds.
     Soundbeep, 1700, 75
         ExitApp
 Return
@@ -103,14 +90,6 @@ SetTitleMatchMode 2
 Menu, Tray, Icon, compstui.dll, 55
 Return
 ;∙---------------------- Auto-Execute Sub End ---------------------------∙ 
-; ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
-;⮞--------------------- GoSubs ----------------------------------------------∙ 
-;--------------------------------------------- 
-
-;----------- 
-
-;--------------------------------------------- 
-;∙--------------------- GoSubs End -----------------------------------------∙ 
 ; ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
 /* 
  ⮞-------------------------------------------------------------------------------------------------⮜ 
