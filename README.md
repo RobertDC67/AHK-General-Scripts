@@ -6,7 +6,7 @@ Miscellaneous scripts packaged in folders.
 
 Folder icons created using FolderIco 6.2.1   ⮘ https://www.folderico.com/
 
-    ...although looking into freeware - Folder Marker   ⮘ https://foldermarker.com/en/)
+although looking into freeware - Folder Marker   ⮘ https://foldermarker.com/en/
 
 ___
 
