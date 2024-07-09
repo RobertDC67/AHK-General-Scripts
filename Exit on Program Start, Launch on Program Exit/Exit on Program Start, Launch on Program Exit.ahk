@@ -30,7 +30,7 @@ Once the particular program (APP) is closed, the specific AutoHotkey script (SCR
 The script achieves this by continuously monitoring the program's process and managing the script's state accordingly, using a timer to check the process status every 200 milliseconds.
 
     *  Usage Scenario Example: 
-    I use a Gui for volume level display next to the clock in taskbar. Due to the taskbar having higher priority in elevation level, I also have the Gui on a timer to keep it AlwaysOnTop. When watching movies through my media player (SMPlayer), this obvious becomes a problem when I go to full screen mode. 
+ I use a Gui for volume level display next to the clock in taskbar. Due to the taskbar having higher priority in elevation level, I also have the Gui on a timer to keep it AlwaysOnTop. When watching movies through my media player (SMPlayer), this obvious becomes a problem when I go to full screen mode. 
 This script will close my Volume.ahk script anytime SMPlayer.exe is running. Once SMPlayer.exe closes, it restarts my Volume.ahk script.
 
 */ 
