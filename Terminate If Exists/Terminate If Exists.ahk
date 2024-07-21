@@ -31,7 +31,7 @@ Gosub, AutoExecute
 
 
 
-;;  1  ∙=∙=∙=∙Globals∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
+;;  1  ∙=∙=∙=∙Variables∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
 TargetProcess := "Program.exe"
 TargetTitle := "WinTitle"
 CheckInterval := 5000 
