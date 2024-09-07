@@ -57,7 +57,7 @@ regValueNameLatitude := "Latitude"
 regValueNameLongitude := "Longitude"
 
 ;;;====== 🔥 HotKey 🔥 ================================
-^t::        ;; ⮘---[CTRL] + [t]    ;;  If changed, also change --> Gosub, ^t.
+^t::    ;; ⮘---[CTRL] + [t]    ;;  If changed, also change --> Gosub, ^t.
 
 ;;;====== Request Coordinates =========================
 RegRead, latitude, %regKey%, %regValueNameLatitude%
