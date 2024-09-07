@@ -68,7 +68,7 @@ Sleep, 10
 ;            Soundbeep, 1200, 300
     Sleep, 200
 }
-;------------------------------------------ 
+;------------------------------------------
 Tray_Refresh() {
     WM_MOUSEMOVE := 0x200
     detectHiddenWin := A_DetectHiddenWindows
