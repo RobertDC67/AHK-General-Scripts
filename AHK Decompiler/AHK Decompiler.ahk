@@ -50,7 +50,7 @@ GuiSize:
 GuiControl,Move,AHKExe, % "w" A_GuiWidth-6
 GuiControl,Move,MyLog, % "w" A_GuiWidth-6
 GuiControl,Move,ScriptSource, % "w" A_GuiWidth-6 " h" A_GuiHeight-232
-return
+Return
 
 ExtractNow:
 	Gui,submit, nohide
