@@ -24,7 +24,7 @@ Gosub, AutoExecute
 ; ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
 
 
-^F3:: 	 ; (Ctrl+F3)
+^F3:: 	 ;; (Ctrl+F3)
 MsgBox, , , This script ensures that any changes made`n`nto the AHK scripts in the specified directory`n`nare automatically detected and reloaded`n`nwithout manual intervention., 8
 Return
 
