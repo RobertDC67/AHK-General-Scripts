@@ -10,7 +10,7 @@
           the script will automatically reload itself and continue
           running without manual intervention.
 ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
-∙--------------∙ Script Specific Notes ∙--------------∙ 
+∙--------------∙ Script Specific Notes ∙--------------∙
 » SOURCE :  https://www.autohotkey.com/board/topic/80573-how-to-set-a-gui-to-be-always-at-bottom/
 » More efficient way of setting a GUI to be the "Child window of Desktop"
 ∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙=∙ 
