@@ -28,6 +28,7 @@ GoSub, TrayMenu
 ;;∙------∙Sizes and Positions∙------∙
 guiX := "800"    ;;∙------∙dragNdrop Gui X-axis.
 guiY := "100"    ;;∙------∙dragNdrop Gui Y-axis.
+;;∙------∙* See guiX2 and guiY2 below in script for Results Gui positioning *
 ;;∙------∙
 gui1W := "200"    ;;∙------∙dragNdrop Gui Width.
 gui1H := "75"    ;;∙------∙dragNdrop Gui Height.
