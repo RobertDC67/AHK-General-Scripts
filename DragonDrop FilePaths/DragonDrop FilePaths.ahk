@@ -9,9 +9,11 @@
           running without manual intervention.
 » 
 ∙--------∙Source∙-------------------------∙
-» Drag-n-Drop files and Icons onto the Gui.
+» Drag-n-Drop files, folders, and Icons onto the Gui.
 » File location path(s) will be displayed in a popup Gui, and also copied to the clipboard.
-» Note: * This will only retrieve the file location path for a single desktop icon at a time.
+» Retrieves single or multiple files at once...except (see Note:)
+» * Note: This will only retrieve the file location path for a single desktop icon at a time.
+» 
 ∙=============================================================∙
 */
 
