@@ -19,21 +19,21 @@
 
 ;;∙============================================================∙
 ;;∙------------------------------------------------------------------------------------------∙
-;;∙======∙dragNdrop Auto-Executes∙===============================∙
-ScriptID := "dragNdrop∙Paths"
+;;∙======∙DragonDrop Auto-Executes∙===============================∙
+ScriptID := "DragonDrop∙Paths"
 GoSub, AutoExecute
 GoSub, TrayMenu
 
 ;;∙============================================================∙
 ;;∙------------------------------------------------------------------------------------------∙
-;;∙======∙dragNdrop Gui Layout  Variables∙==========================∙
+;;∙======∙DragonDrop Gui Layout  Variables∙==========================∙
 ;;∙------∙Sizes and Positions∙------∙
-guiX := "800"    ;;∙------∙dragNdrop Gui X-axis.
-guiY := "100"    ;;∙------∙dragNdrop Gui Y-axis.
+guiX := "800"    ;;∙------∙DragonDrop Gui X-axis.
+guiY := "100"    ;;∙------∙DragonDrop Gui Y-axis.
 ;;∙------∙* See guiX2 and guiY2 below in script for Results Gui positioning *
 ;;∙------∙
-gui1W := "200"    ;;∙------∙dragNdrop Gui Width.
-gui1H := "75"    ;;∙------∙dragNdrop Gui Height.
+gui1W := "200"    ;;∙------∙DragonDrop Gui Width.
+gui1H := "75"    ;;∙------∙DragonDrop Gui Height.
 ;;∙------∙
 gui2W := "650"    ;;∙------∙Response Return Gui Width.
 gui2H := "175"    ;;∙------∙Response Return Gui Height.
@@ -51,7 +51,7 @@ g2FontColor := "80AEFF"    ;;∙------∙(Light Blue)
 
 ;;∙============================================================∙
 ;;∙------------------------------------------------------------------------------------------∙
-;;∙======∙dragNdrop Gui∙========================================∙
+;;∙======∙DragonDrop Gui∙========================================∙
 Gui, +AlwaysOnTop -Caption +Border +ToolWindow
 Gui, Color, %guiColor%
 Gui, Font, s%g1FontSize% c%g1FontColor%, %g1Font%
@@ -65,7 +65,7 @@ Gui, Show, w%gui1W% h%gui1H% x%guiX% y%guiY%
 
 ;;∙============================================================∙
 ;;∙------------------------------------------------------------------------------------------∙
-;;∙======∙dragNdrop Gui Response Returns∙=========================∙
+;;∙======∙DragonDrop Gui Response Returns∙=========================∙
 guiE2W := gui2W-25
 Gui, 2: +AlwaysOnTop -Caption +Border +ToolWindow
 Gui, 2: Color, %guiColor%
@@ -86,7 +86,7 @@ droppedFiles := []
 
 ;;∙============================================================∙
 ;;∙------------------------------------------------------------------------------------------∙
-;;∙======∙dragNdrop GuiDropFiles∙================================∙
+;;∙======∙DragonDrop GuiDropFiles∙================================∙
 GuiDropFiles:
 {
     droppedFile := A_GuiEvent
@@ -251,7 +251,7 @@ Return
 ;;∙============================================================∙
 ;;∙------------------------------------------------------------------------------------------∙
 ;;∙======∙MENU CALLS∙==========================================∙
-dragNdrop∙Paths:
+DragonDrop∙Paths:
     Suspend
     Soundbeep, 700, 100
     Pause
