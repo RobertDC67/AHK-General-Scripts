@@ -143,7 +143,7 @@ Loop    ;;∙------∙Start countdown loop.
         GuiControl,, Edit1, % Minutes    ;;∙------∙Update the Minutes display in the GUI.
         GuiControl,, Edit2, % Seconds    ;;∙------∙Update the Seconds display in the GUI.
         
-        ;;∙------∙Format and update the time remaining display
+        ;;∙------∙Format and update the time remaining display.
         FormattedTime := Format("{:02}", Minutes) ":" Format("{:02}", Seconds)
         GuiControl,, TimeRemaining, Time Remaining:  %FormattedTime%
     }
