@@ -26,6 +26,25 @@ GoSub, TrayMenu
 ;;∙============================================================∙
 
 
+/*∙=====∙ABOUT∙===============================================∙
+1. External IP Information (via GetIPs()):
+    • External IP Address: The public IP of the device as retrieved from an online service (https://ip.guide).
+    • Network Details: This includes information such as CIDR (Classless Inter-Domain Routing), Hosts, Start and End IP addresses within the subnet.
+    • Autonomous System Details: Information about the system managing the IP block, such as ASN (Autonomous System Number), name, organization, and country.
+    • Location Details: Geolocation data including city, timezone, latitude, and longitude.
+    • RIR (Regional Internet Registry): The organization that allocates and manages the IP addresses.
+
+2. Internal Network Information (also via GetIPs()):
+    • Internal IP Addresses: Lists both IPv4 and IPv6 addresses assigned to the device.
+
+3. DNS Server Information:
+    • Provides the list of DNS servers configured for the system.
+
+4. MAC Address Information:
+    • Lists the MAC addresses of all active network adapters on the system.
+∙=============================================================∙
+*/
+
 
 ;;∙============================================================∙
 ;;∙======∙Variables∙=============================================∙
