@@ -215,7 +215,7 @@ SetBatchLines -1
 SetTimer, UpdateCheck, 500
 SetTitleMatchMode 2
 SetWinDelay 0
-Menu, Tray, Icon, Imageres.dll, 65
+Menu, Tray, Icon, Imageres.dll, 243
 Return
 
 ;;∙============================================================∙
