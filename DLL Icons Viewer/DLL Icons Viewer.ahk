@@ -85,7 +85,8 @@ return
 
 ListClick(){
   If (A_GuiEvent = "DoubleClick"){
-    Clipboard := A_WinDir "\system32\" File "`t" A_EventInfo 
+    Clipboard := A_WinDir "\system32\" File ", " A_EventInfo
+
 	tooltip % "copied to clipboard"
 	sleep 500
 	tooltip
